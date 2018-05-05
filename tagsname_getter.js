@@ -11,7 +11,6 @@ reader.on('record', function(record) {
   //console.log(output);
 
   for(var i=0 ; i<output.length ; i++ ){
-  	
   	let publicationTypesStored = publicationTypes.find(function(e){
 	  	return e == output[i].tag;
 	});
