@@ -99,7 +99,7 @@ FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memo
 *I need to hack this file (⌐▨_▨)*
 
 I listed several ways to deal with this file :
-- I split it in several files and I wrap each one with <dblp>, but it's very unaccurate and I'll probably spend lot of time on technical details
+- I split it in several files and I wrap each one with <dblp>, but it's very inaccurate and I'll probably spend lot of time on technical details
 - I find something to put these data in a relational database, but it needs obviously an XML parser and I'll probably cope with the same memory issue
 - I rent a powerful server to run my script, but it requires money and OS setup (at least to install node, ok it's easy but you never know!)
 - I pray god but it only works in case of extrem emergency
@@ -107,3 +107,54 @@ I listed several ways to deal with this file :
 
 Without any surprise, I decided to pray god and grep it. I suddenly realized that I could just grep the mdate parameter to count the total of any publications per year (o_o). I already spent a good amount of time on my javascript, let's take advantage of it to accomplish a great job by having data sorted by type of publication (•̀ᴗ•́)و
 
+This idea gave birth of this bash script below :
+
+```tagsname_getter.sh
+#!/bin/bash
+
+DATA="dblp.xml"
+
+echo "cutting the file $DATA..."
+
+grep -o '<[a-z ]\+ mdate' $DATA | sed -e 's/<\([a-z]*\) mdate/\1/' > tagsname.txt
+
+echo "tagsname.txt created. A list of unique tags name is processing, please wait..."
+echo "(∩｀-´)⊃━☆ﾟ.*･｡ﾟ"
+
+TAGS=()
+
+#read line by line
+while IFS='' read -r line || [[ -n "$line" ]] ; do
+	#search in the TAGS array if the tagname is already recorded
+	RECORDED=false
+	for i in "${TAGS[@]}" ; do
+		if [ $i == $line ] ; then
+			#echo yes
+			RECORDED=true
+			break
+		fi
+	done
+	if [ $RECORDED = false ] ; then
+		echo $line
+		TAGS+=($line)
+	fi
+	#echo "Text read from file: $line"
+done < tagsname.txt
+
+echo "Done (*‿*✿)"
+```
+
+with the following output :
+
+```
+article
+proceedings
+inproceedings
+incollection
+book
+phdthesis
+mastersthesis
+www
+```
+
+＼\ ٩( ᐛ )و /／
