@@ -1,14 +1,14 @@
-# data #
+### data ###
 
 - dblp.xml - original data (download it with ./download.sh if you are under linux)
 - extract.xml - shrinked data to make tests (extract from dblp.xml)
 - record.json - record and computation of the data from dblp.xml
 
-# code #
+### code ###
 
 main.js
 
-# install & requirements #
+### install & requirements ###
 
 - node 10.0.0
 - npm 6.0.0
@@ -19,11 +19,11 @@ $ npm install
 $ node main.js
 ```
 
-### Technical report ###
+# Technical report #
 
 ## Methodology ##
 
-# I) Genesis #
+### I) Genesis ###
 
 The set of data is big (2.2G) and it's an XML file, a format which is more heavy to read than to store (because of the parsing process). Well, I tried to open it with a regular text edition tool and, as expected, my computer runned out of memory just trying to read the raw document. Further more, this format is higly deprecated and online help communities mostly suggest to use another format source... The obvious truth was finally set in my mind : this one is going to be tricky.
 
@@ -87,7 +87,7 @@ As a result, I get this dataset (sorted by year by hand) :
 
 Cool, this looks nice for a first shot. Well, my instinct told me at this moment that it seems to be too easy, and there are not so much data to play with at final. There is probably more than 3 children tags (article, masterthesis, phdthesis) and I need to list it in order to feed my script through the regular expression.
 
-# II) Hack the data file #
+### II) Hack the data file ###
 
 My javascript works well to match some children of <dblp> so, let's have a try on <dblp> itself to figure out the name of each child only. I write a new code under the name of tagsname_getter.js, but I know something : big-xml library search for a tag, then read the whole content and give the fallback before releasing the memory and going to the next tag whitch match with the regular expression. Yet, <dblp> is the only one tag which wrap the entire file. I don't like to be pessimistic but, I think it won't make it.
 After 5 minutes waiting for the program to give me an output, the smashing conclusion clearly appeared :
