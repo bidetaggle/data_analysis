@@ -27,7 +27,7 @@ $ node main.js
 
 The set of data is big (2.2G) and it's an XML file, a format which is more heavy to read than to store (because of the parsing process). Well, I tried to open it with a regular text edition tool and, as expected, my computer runned out of memory just trying to read the raw document. Further more, this format is higly deprecated and online help communities mostly suggest to use another format source... The obvious truth was finally set in my mind : this one is going to be tricky.
 
-First of all, I checked how the file looks like by hand with the help of tail and head UNIX commands and I figured out that everything is wrapped into a <dblp> tag, and each child seems to be a publication with an mdate parameter. Among those children, I've seen the tags <article>, <mastersthesis> and <phdthesis>.
+First of all, I checked how the file looks like by hand with the help of tail and head UNIX commands and I figured out that everything is wrapped into a `<dblp>` tag, and each child seems to be a publication with an mdate parameter. Among those children, I've seen the tags `<article>`, `<mastersthesis>` and `<phdthesis>`.
 Here is the first lines of data :
 
 ```dblp.xml
@@ -89,7 +89,7 @@ Cool, this looks nice for a first shot. Well, my instinct told me at this moment
 
 ### II) Hack the data file ###
 
-My javascript works well to match some children of <dblp> so, let's have a try on <dblp> itself to figure out the name of each child only. I write a new code under the name of tagsname_getter.js, but I know something : big-xml library search for a tag, then read the whole content and give the fallback before releasing the memory and going to the next tag whitch match with the regular expression. Yet, <dblp> is the only one tag which wrap the entire file. I don't like to be pessimistic but, I think it won't make it.
+My javascript works well to match some children of `<dblp>` so, let's have a try on `<dblp>` itself to figure out the name of each child only. I write a new code under the name of tagsname_getter.js, but I know something : big-xml library search for a tag, then read the whole content and give the fallback before releasing the memory and going to the next tag whitch match with the regular expression. Yet, `<dblp>` is the only one tag which wrap the entire file. I don't like to be pessimistic but, I think it won't make it.
 After 5 minutes waiting for the program to give me an output, the smashing conclusion clearly appeared :
 
 ```
