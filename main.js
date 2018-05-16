@@ -1,5 +1,6 @@
 var bigXml = require('big-xml');
     
+//var reader = bigXml.createReader('dblp.xml', /^(article|phdthesis|mastersthesis)$/, { gzip: false });
 var reader = bigXml.createReader('dblp.xml', /^(article|proceedings|inproceedings|incollection|book|phdthesis|mastersthesis|www)$/, { gzip: false });
 
 var count = [];
