@@ -13,7 +13,7 @@ main.js
 - node 10.0.0
 - npm 6.0.0
 
-```bash 
+```bash
 $ ./download.sh
 $ npm install
 $ node main.js
@@ -61,28 +61,93 @@ Here is the first lines of data :
 After a few investigation, I decided to use javascript (nodejs) with big-xml library (https://www.npmjs.com/package/big-xml).
 This library search a tag according to a regex request and release the memory once one is found, then keep going the research. Ok, then let's try it with this one : `/^(article|mastersthesis|phdthesis)$/` (main.js)
 
-As a result, I get this dataset (sorted by year by hand) :
+As a result, I get this dataset :
 
 ```record.json
-[ 
-  { year: 2002, n: 5964 },
-  { year: 2003, n: 12729 },
-  { year: 2005, n: 1906 },
-  { year: 2004, n: 5176 },
-  { year: 2006, n: 7490 },
-  { year: 2007, n: 4302 },
-  { year: 2008, n: 3916 },
-  { year: 2009, n: 4144 }, 
-  { year: 2010, n: 10767 },
-  { year: 2011, n: 15224 },
-  { year: 2012, n: 13886 },
-  { year: 2013, n: 16503 },
-  { year: 2014, n: 10420 },
-  { year: 2015, n: 23342 },
-  { year: 2016, n: 53581 },
-  { year: 2017, n: 1591146 },
-  { year: 2018, n: 98360 }
-]
+[ { year: 1936, n: 12 },
+  { year: 1937, n: 15 },
+  { year: 1938, n: 11 },
+  { year: 1939, n: 18 },
+  { year: 1940, n: 10 },
+  { year: 1941, n: 13 },
+  { year: 1942, n: 13 },
+  { year: 1943, n: 8 },
+  { year: 1944, n: 5 },
+  { year: 1945, n: 9 },
+  { year: 1946, n: 31 },
+  { year: 1947, n: 10 },
+  { year: 1948, n: 16 },
+  { year: 1949, n: 23 },
+  { year: 1950, n: 24 },
+  { year: 1951, n: 19 },
+  { year: 1952, n: 34 },
+  { year: 1953, n: 113 },
+  { year: 1954, n: 168 },
+  { year: 1955, n: 156 },
+  { year: 1956, n: 224 },
+  { year: 1957, n: 246 },
+  { year: 1958, n: 275 },
+  { year: 1959, n: 380 },
+  { year: 1960, n: 421 },
+  { year: 1961, n: 609 },
+  { year: 1962, n: 798 },
+  { year: 1963, n: 788 },
+  { year: 1964, n: 767 },
+  { year: 1965, n: 897 },
+  { year: 1966, n: 978 },
+  { year: 1967, n: 1175 },
+  { year: 1968, n: 1327 },
+  { year: 1969, n: 1331 },
+  { year: 1970, n: 1576 },
+  { year: 1971, n: 1976 },
+  { year: 1972, n: 2399 },
+  { year: 1973, n: 2555 },
+  { year: 1974, n: 2656 },
+  { year: 1975, n: 2891 },
+  { year: 1976, n: 3090 },
+  { year: 1977, n: 3526 },
+  { year: 1978, n: 3577 },
+  { year: 1979, n: 3771 },
+  { year: 1980, n: 4364 },
+  { year: 1981, n: 4747 },
+  { year: 1982, n: 5374 },
+  { year: 1983, n: 6059 },
+  { year: 1984, n: 6865 },
+  { year: 1985, n: 7522 },
+  { year: 1986, n: 7939 },
+  { year: 1987, n: 8812 },
+  { year: 1988, n: 10001 },
+  { year: 1989, n: 11076 },
+  { year: 1990, n: 12303 },
+  { year: 1991, n: 14237 },
+  { year: 1992, n: 15837 },
+  { year: 1993, n: 17706 },
+  { year: 1994, n: 19354 },
+  { year: 1995, n: 21151 },
+  { year: 1996, n: 23303 },
+  { year: 1997, n: 24580 },
+  { year: 1998, n: 26472 },
+  { year: 1999, n: 29760 },
+  { year: 2000, n: 34088 },
+  { year: 2001, n: 35490 },
+  { year: 2002, n: 38114 },
+  { year: 2003, n: 44303 },
+  { year: 2004, n: 48790 },
+  { year: 2005, n: 56969 },
+  { year: 2006, n: 64330 },
+  { year: 2007, n: 71934 },
+  { year: 2008, n: 77661 },
+  { year: 2009, n: 85570 },
+  { year: 2010, n: 92540 },
+  { year: 2011, n: 99572 },
+  { year: 2012, n: 108540 },
+  { year: 2013, n: 115768 },
+  { year: 2014, n: 122713 },
+  { year: 2015, n: 127607 },
+  { year: 2016, n: 137248 },
+  { year: 2017, n: 149683 },
+  { year: 2018, n: 51530 },
+  { year: undefined, n: 3 } ]
 ```
 
 Cool, this looks nice for a first shot. Well, my instinct told me at this moment that it seems to be too easy, and there are not so much data to play with at final. There is probably more than 3 children tags (article, masterthesis, phdthesis) and I need to list it in order to feed my script through the regular expression.
