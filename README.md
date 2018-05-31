@@ -1,8 +1,11 @@
+# README #
+
 ### data ###
 
 - dblp.xml - original data (download it with ./download.sh if you are under linux)
 - extract.xml - shrinked data to make tests (extract from dblp.xml)
 - record.json - record and computation of the data from dblp.xml
+- report.pdf - report with ACM template
 
 ### code ###
 
@@ -223,3 +226,5 @@ www
 ```
 
 ＼\ ٩( ᐛ )و /／
+
+Read more on report.pdf
